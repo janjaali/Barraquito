@@ -6,6 +6,8 @@ version := "1.0.0-SNAPSHOT"
 
 scalaVersion := "2.12.1"
 
+assemblyOutputPath in assembly := file("target/Barraquito.jar")
+
 libraryDependencies ++= Seq(
   "org.sangria-graphql" %% "sangria" % "1.2.2",
   "org.sangria-graphql" %% "sangria-spray-json" % "1.0.0",
