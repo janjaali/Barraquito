@@ -9,3 +9,7 @@ GraphQl endpoint build with akka-http and sangria.
 ## Assembly
 
     sbt assembly
+
+## Dockerize
+
+    docker-compose up
