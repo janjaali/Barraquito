@@ -34,13 +34,13 @@ object CoffeeGraphQlSchema {
     )
   )
 
-  val coffeeQueryType = ObjectType(
+  val CoffeeQueryType = ObjectType(
     name = "Query",
     fields[CoffeeRepo, Unit](
       Field("coffees", ListType(CoffeeType), resolve = _.ctx.coffees)
     )
   )
 
-  val schema = Schema(coffeeQueryType)
+  val schema = Schema(CoffeeQueryType)
 
 }
