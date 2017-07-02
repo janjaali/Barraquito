@@ -30,7 +30,8 @@ object CoffeeGraphQlSchema {
       Field("name", StringType, resolve = _.value.name),
       Field("intensity", IntType, resolve = _.value.intensity),
       Field("cupSize", ListType(CupSizeType), resolve = _.value.cupSize),
-      Field("aromaProfile", AromaProfileType, resolve = _.value.aromaProfile)
+      Field("aromaProfile", AromaProfileType, resolve = _.value.aromaProfile),
+      Field("price", IntType, resolve = _.value.price)
     )
   )
 
