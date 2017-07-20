@@ -3,6 +3,7 @@ package net.habashi.barraquito
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
+import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server._
 import akka.stream.ActorMaterializer
@@ -17,7 +18,10 @@ object Server extends App {
   val route: Route =
     (post & path("graphql")) {
       entity(as[JsValue]) { requestJson =>
-        GraphQlRoute.execute(requestJson)
+        GraphQlRoute.execute(requestJson) match {
+          case Left(responseJsonFuture) => complete(responseJsonFuture)
+          case Right(failure) => complete(BadRequest, JsObject("error" -> JsString(failure.error), "json" -> failure.json))
+        }
       }
     } ~
       get {
