@@ -6,7 +6,7 @@ import spray.json.{JsArray, JsObject, JsString}
 class GraphQlRouteTest extends AsyncWordSpec {
 
   "The GraphQL endpoint" should {
-    "execute returns failure for JSONs without query tag" in {
+    """return failure for JSONs without the "query" tag""" in {
       val jsonQuery = JsObject("foo" -> JsString("bar"))
       GraphQlRoute.execute(jsonQuery) match {
         case Left(_) => fail
