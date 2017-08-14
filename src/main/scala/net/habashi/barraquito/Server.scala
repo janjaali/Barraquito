@@ -15,6 +15,8 @@ object Server extends App {
   implicit val system = ActorSystem("server")
   implicit val materializer = ActorMaterializer()
 
+  val (host,port) = ("0.0.0.0", 8080)
+
   val route: Route =
     (post & path("graphql")) {
       entity(as[JsValue]) { requestJson =>
@@ -28,6 +30,6 @@ object Server extends App {
         getFromResource("graphiql.html")
       }
 
-  Http().bindAndHandle(route, "0.0.0.0", 8080)
+  Http().bindAndHandle(route, host, port)
 
 }
